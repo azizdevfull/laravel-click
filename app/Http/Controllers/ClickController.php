@@ -12,20 +12,19 @@ class ClickController extends Controller
     {
 
         // \Log::info('Prepare',[$request->all()]);
-        $clickTransId = $request->input('click_trans_id');
-        $serviceId = $request->input('service_id');
-        $clickPaydocId = $request->input('click_paydoc_id');
-        $merchantTransId = $request->input('merchant_trans_id');
-        $amount = $request->input('amount');
-        $action = $request->input('action');
-        $error = $request->input('error');
-        $errorNote = $request->input('error_note');
-        $signTime = $request->input('sign_time');
-        $signString = $request->input('sign_string');
-        $secretKey = 'GFwdmEQpHp5';
-
+        $clickTransId = $request->input('Request.click_trans_id');
+        $serviceId = $request->input('Request.service_id');
+        $clickPaydocId = $request->input('Request.click_paydoc_id');
+        $merchantTransId = $request->input('Request.merchant_trans_id');
+        $amount = $request->input('Request.amount');
+        $action = $request->input('Request.action');
+        $error = $request->input('Request.error');
+        $errorNote = $request->input('Request.error_note');
+        $signTime = $request->input('Request.sign_time');
+        $signString = $request->input('Request.sign_string');
+        $secretKey = 'siznigSecretKeyingiz';
         $generatedSignString = md5($clickTransId . $serviceId . $secretKey . $merchantTransId . $amount . $action . $signTime);
-
+        // dd($generatedSignString);
         if ($signString !== $generatedSignString) {
             return response()->json(['error' => -1, 'error_note' => 'Invalid sign_string']);
         }
@@ -63,22 +62,22 @@ class ClickController extends Controller
     }
     public function complete(Request $request)
     {
-        $clickTransId = $request->input('click_trans_id');
-        $serviceId = $request->input('service_id');
-        $clickPaydocId = $request->input('click_paydoc_id');
-        $merchantTransId = $request->input('merchant_trans_id');
-        $merchantPrepareId = $request->input('merchant_prepare_id');
-        $amount = $request->input('amount');
-        $action = $request->input('action');
-        $error = $request->input('error');
-        $errorNote = $request->input('error_note');
-        $signTime = $request->input('sign_time');
-        $signString = $request->input('sign_string');
-        $secretKey = 'GFwdmEQpHp5';
+        $clickTransId = $request->input('Request.click_trans_id');
+        $serviceId = $request->input('Request.service_id');
+        $clickPaydocId = $request->input('Request.click_paydoc_id');
+        $merchantTransId = $request->input('Request.merchant_trans_id');
+        $merchantPrepareId = $request->input('Request.merchant_prepare_id');
+        $amount = $request->input('Request.amount');
+        $action = $request->input('Request.action');
+        $error = $request->input('Request.error');
+        $errorNote = $request->input('Request.error_note');
+        $signTime = $request->input('Request.sign_time');
+        $signString = $request->input('Request.sign_string');
+        $secretKey = 'siznigSecretKeyingiz';
         // $secretKey = env('MERCHANT_KEY'); 
 
         $generatedSignString = md5($clickTransId . $serviceId . $secretKey . $merchantTransId . $merchantPrepareId . $amount . $action . $signTime);
-
+        // dd($generatedSignString);
         if ($signString !== $generatedSignString) {
             return response()->json(['error' => -1, 'error_note' => 'Invalid sign_string']);
         }
