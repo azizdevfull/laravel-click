@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class ClickUz extends Model
 {
     use HasFactory;
+    protected $fillable = ['click_trans_id', 'merchant_trans_id', 'amount', 'sign_time', 'situation', 'status'];
 
-    protected $fillable = ['title', 'description'];
 }
