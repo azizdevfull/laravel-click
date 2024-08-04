@@ -84,8 +84,7 @@ class ClickController extends Controller
 
         if ($error == 0) {
             ClickUz::where('click_trans_id', $clickTransId)->update(['situation' => 1, 'status' => 'success']);
-            Order::where('id', $merchantTransId)->update(['status' => 'yakunlandi']); // Retrieve the Order
-            $order = Order::find($merchantPrepareId);
+            Order::where('id', $merchantTransId)->update(['status' => 'yakunlandi']);
             return response()->json([
                 'click_trans_id' => $clickTransId,
                 'merchant_trans_id' => $merchantTransId,

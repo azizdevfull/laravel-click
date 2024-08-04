@@ -14,6 +14,11 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         Order::create([
+            'total' => '1000',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        Order::create([
             'total' => '2000',
             'created_at' => now(),
             'updated_at' => now(),
